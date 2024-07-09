@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <div class="language">
+        <li>java</li>
+    </div>
+</body>
+<script>
+//createing new elments
+
+    function addLang(langName) {
+       const newLi = document.createElement('li')
+       newLi.innerHTML=`${langName}`
+       document.querySelector('.language').appendChild(newLi)
+    }
+    // addLang("python")
+
+    function addLang(langeName){
+        const newLi = document.createElement("li")
+        const insert = document.createTextNode(langeName)
+        newLi.appendChild(insert)
+        document.querySelector(".language").appendChild(newLi)
+    }
+    addLang("c++")
+    addLang("javaScript")
+    addLang("rubi")
+
+
+//edit the elements like replace the li
+
+//here we have target the second child of li
+const editElem = document.querySelector("li:nth-child(2)")
+console.log(editElem);
+//we can replace the elements by this method also but it is not that much optimize
+// editElem.innerHTML="rust"
+
+//can use this other method which is much optimize
+//here firstly we have created newElement and after that put the text which we want to insert
+//then we have use replaceWith method to just replace it
+const newLi=document.createElement('li')
+newLi.textContent="rust"
+editElem.replaceWith(newLi)
+
+
+//edit we can remove also using remove()
+//here we have remove the last child
+const deleteElement =document.querySelector('li:last-child')
+console.log(deleteElement);
+deleteElement.remove()
+
+</script>
+</html>
