@@ -24,23 +24,26 @@ if (playGame){
 
 function validGuess(guess){
     if(isNaN(guess)){
-        alert(`please enter the valid number`)
+        alert(`Please enter a valid number`);
     } else if (guess < 1){
-        alert(`please enter the number more than 1`)
+        alert(`Please enter a number more than 1`);
     } else if (guess > 100){
-        alert(`please enter the number less than 100`)
+        alert(`Please enter a number less than 100`);
+    } else if (prevGuess.includes(guess)){
+        alert(`You have already guessed that number. Try a different number.`);
     } else {
-        prevGuess.push(guess)
+        prevGuess.push(guess);
         if(numGuess >= 10){
-            displayGuess(guess)
-            displayMessage(`Game over . Random number was ${randomNumber}`)
-            endGame()
-        }else {
-            displayGuess(guess)
-            checkGuess(guess)
+            displayGuess(guess);
+            displayMessage(`Game over. The random number was ${randomNumber}`);
+            endGame();
+        } else {
+            displayGuess(guess);
+            checkGuess(guess);
         }
     }
 }
+
 
 function checkGuess(guess){
     if(guess === randomNumber){
@@ -66,24 +69,26 @@ function displayMessage(message){
 
 function endGame(){
     userInput.value = ''
-    userInput.setAttribute('disabled' , '')
-    p.classList.add('button')
-    p.innerHTML = `<h2 id="newGame">Start new Game</h2>`
-    startOver.appendChild(p)
+    userInput.setAttribute('disabled', '')
+    const newGameButton = document.createElement('button')
+    newGameButton.classList.add('button')
+    newGameButton.innerHTML = 'Start New Game'
+    newGameButton.setAttribute('id', 'newGame')
+    startOver.appendChild(newGameButton)
     playGame = false
     newGame()
 }
 
 function newGame(){
     const newGameButton = document.querySelector('#newGame')
-    newGameButton.addEventListener('click',function(){
-        randomNumber=parseInt(Math.random()*100 +1)
+    newGameButton.addEventListener('click', function(){
+        randomNumber = parseInt(Math.random() * 100 + 1)
         prevGuess = []
         numGuess = 1
         guessSlot.innerHTML = ''
-        remaining.innerHTML = `${10-numGuess}`
+        remaining.innerHTML = `${10 - numGuess}`
         userInput.removeAttribute('disabled')
-        startOver.removeChild(p)
+        startOver.removeChild(newGameButton)
         playGame = true
     })
 }
