@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #211212; color:white">
+    <h1>welcome to javaScript </h1>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+</body>
+<script>
+let startInt
+//we have created start function
+const start = function(){
+    console.log("girish",Date.now())
+}
+//we have use start function in setinterval and made a fnction that can be use in start btn
+const startIntervel = function(){
+     startInt = setInterval( start,2000)
+}
+
+//we have created a stop function that can be ue in stop btn
+const clearBtn = function(){
+    clearInterval(startInt)
+}
+
+//here we have created a click event on that we have added the start function so on clicking the start button it get started
+const startBtn = document.getElementById('start')
+startBtn.addEventListener('click',function(){
+    startIntervel()
+})
+
+
+//here we have created a click event to stop the interval and added the stop function over here
+const stopBtn = document.getElementById('stop')
+stopBtn.addEventListener('click',function(){
+    clearInterval(clearBtn())
+    // console.log("stopped")
+})
+
+</script>
+</html>
